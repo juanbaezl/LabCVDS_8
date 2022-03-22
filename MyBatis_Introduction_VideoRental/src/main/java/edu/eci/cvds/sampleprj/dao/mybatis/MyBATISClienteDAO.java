@@ -13,7 +13,7 @@ public class MyBATISClienteDAO implements ClienteDao {
     private ClienteMapper clienteMapper;
 
     @Override
-    public Cliente consultarCliente(int id) throws PersistenceException {
+    public Cliente consultarCliente(long id) throws PersistenceException {
         try {
             return clienteMapper.consultarCliente(id);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {

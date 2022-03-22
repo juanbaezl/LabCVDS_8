@@ -9,12 +9,12 @@ import edu.eci.cvds.samples.entities.TipoItem;
 
 public class MyBATISTipoItemDAO implements TipoItemDAO {
 
-    private TipoItemMapper timothy;
+    private TipoItemMapper TIM;
 
     @Override
     public List<TipoItem> getTiposItems() throws PersistenceException {
         try {
-            return timothy.getTiposItems();
+            return TIM.getTiposItems();
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             throw new PersistenceException("Error al consultar tipos de items ", e);
         }
@@ -23,7 +23,7 @@ public class MyBATISTipoItemDAO implements TipoItemDAO {
     @Override
     public TipoItem getTipoItem(int id) throws PersistenceException {
         try {
-            return timothy.getTipoItem(id);
+            return TIM.getTipoItem(id);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             throw new PersistenceException("Error al consultar tipo de item con id " + id, e);
         }
@@ -32,7 +32,7 @@ public class MyBATISTipoItemDAO implements TipoItemDAO {
     @Override
     public void addTipoItem(String des) throws PersistenceException {
         try {
-            timothy.addTipoItem(des);
+            TIM.addTipoItem(des);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             throw new PersistenceException("Error al añadir tipo de item con id" + des, e);
         }
