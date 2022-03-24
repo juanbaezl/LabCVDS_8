@@ -2,6 +2,9 @@ package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import org.mybatis.guice.transactional.Transactional;
+
 import edu.eci.cvds.sampleprj.dao.ClienteDao;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
 import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
@@ -116,7 +119,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
             throw new ExcepcionServiciosAlquiler("Error al consultar los tipos ", e);
         }
     }
-
+    @Transactional
     @Override
     public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
         try {
@@ -125,7 +128,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
             throw new ExcepcionServiciosAlquiler("Error al consultar el item al cliente "+docu, e);
         }
     }
-
+    @Transactional
     @Override
     public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
         try {
@@ -145,7 +148,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
             throw new ExcepcionServiciosAlquiler("Error al calcular costo de alquiler del item"+iditem, e);
         }
     }
-
+    @Transactional
     @Override
     public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
         try {
@@ -156,7 +159,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
             throw new ExcepcionServiciosAlquiler("Error al modificar item"+id, e);
         }
     }
-
+    @Transactional
     @Override
     public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
         try {
@@ -165,7 +168,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
             throw new ExcepcionServiciosAlquiler("Error al guardar item"+i, e);
         }
     }
-
+    @Transactional
     @Override
     public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
         try {
