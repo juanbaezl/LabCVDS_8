@@ -16,8 +16,6 @@
  */
 package edu.eci.cvds.samples.services.client;
 
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -60,42 +58,35 @@ public class MyBatisExample {
 
     /**
      * Programa principal de ejempo de uso de MyBATIS
+     * 
      * @param args
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void main(String args[]) throws SQLException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
-        try(SqlSession sqlss = sessionfact.openSession();){
-            ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
-            ItemMapper itemMapper = sqlss.getMapper(ItemMapper.class);
-            TipoItemMapper tipoItemMapper = sqlss.getMapper(TipoItemMapper.class);
+        try (SqlSession sqlss = sessionfact.openSession();) {
 
+            ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
 
-            //System.out.println(cm.consultarClientes());
-            //System.out.println(cm.consultarCliente(234));
-            //System.out.println(itemMapper.consultarItems());
+            System.out.println(cm.consultarClientes());
+            System.out.println(cm.consultarCliente(1));
 
-            //System.out.println(itemMapper.consultarItem(2));
-            
+            System.out.println(cm.consultarCliente(2165335));
 
-            tipoItemMapper.addTipoItem("Hola Juan carlos cp");
-            TipoItem tipo = tipoItemMapper.getTipoItem(1);
-            itemMapper.insertarItem(new Item(tipo, 2165877, "Juan", "Estudiante", new Date(), 10000, "formatoRenta", "undefined"));
-            cm.agregarItemRentadoACliente(98347, 2165877, new Date(), new Date());
+            ItemMapper im = sqlss.getMapper(ItemMapper.class);
+
+            System.out.println(im.consultarItems());
+            System.out.println(im.consultarItem(2165335));
 
             sqlss.commit();
-        
-        
+
             sqlss.close();
 
-
-        }catch(Exception e){
-                e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        
     }
-
 
 }
