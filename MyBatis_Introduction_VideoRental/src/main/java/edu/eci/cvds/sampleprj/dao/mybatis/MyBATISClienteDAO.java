@@ -22,7 +22,7 @@ public class MyBATISClienteDAO implements ClienteDao {
     }
 
     @Override
-    public void agregarItemRentadoACliente(int id, int idit, Date fechainicio, Date fechafin)
+    public void agregarItemRentadoACliente(long id, int idit, Date fechainicio, Date fechafin)
             throws PersistenceException {
         try {
             clienteMapper.agregarItemRentadoACliente(id, idit, fechainicio, fechafin);
@@ -38,6 +38,16 @@ public class MyBATISClienteDAO implements ClienteDao {
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {
             throw new PersistenceException("Error al consultar los clientes", e);
         }
+    }
+
+    @Override
+    public void save(Cliente cl) throws PersistenceException{
+        try{
+            clienteMapper.insertarCliente(cl);
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al registrar el cliente",e);
+        } 
     }
 
 }

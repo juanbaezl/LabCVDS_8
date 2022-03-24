@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ServiciosAlquiler {
 
-public abstract int valorMultaRetrasoxDia(int itemId);
+public abstract int valorMultaRetrasoxDia();
 
 public abstract Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler;
 

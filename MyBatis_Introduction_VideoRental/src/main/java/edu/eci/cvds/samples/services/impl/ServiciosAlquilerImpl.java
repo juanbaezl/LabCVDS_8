@@ -33,7 +33,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
     private TipoItemDAO tipoItemDAO;
 
     @Override
-    public int valorMultaRetrasoxDia(int itemId) {
+    public int valorMultaRetrasoxDia() {
         return 20;
     }
 
@@ -86,52 +86,94 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
     @Override
     public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
         try {
-            return itemDAO.consultarItemsDisponibles();
+            ItemRentado item = itemRentadoDAO.consultarItemRentado(iditem);
+            Date fechaFinRenta = item.getFechafinrenta();
+            long diasRetraso = fechaDevolucion.compareTo(fechaFinRenta);
+            if (diasRetraso<0){
+                diasRetraso=0;
+            }
+            long multaRetrasoxDia = valorMultaRetrasoxDia();
+            return diasRetraso*multaRetrasoxDia;
         } catch (PersistenceException e) {
-            throw new ExcepcionServiciosAlquiler("Error al consultar el items ", e);
+            throw new ExcepcionServiciosAlquiler("Error al consultar multa del item rentado "+iditem, e);
         }
     }
 
     @Override
     public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            return tipoItemDAO.getTipoItem(id);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al consultar el tipo "+id, e);
+        }
     }
 
     @Override
     public List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            return tipoItemDAO.getTiposItems();
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al consultar los tipos ", e);
+        }
     }
 
     @Override
-    public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias)
-            throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
+        try {
+            clienteDao.agregarItemRentadoACliente(docu, item.getId(), date, Date.valueOf(date.toLocalDate().plusDays(numdias)));
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al consultar el item al cliente "+docu, e);
+        }
     }
 
     @Override
     public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            clienteDao.save(c);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al registrar al cliente", e);
+        }
     }
 
     @Override
     public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            Item item=itemDAO.load(iditem);
+            long tarifa = item.getTarifaxDia();
+            return tarifa*numdias;
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al calcular costo de alquiler del item"+iditem, e);
+        }
     }
 
     @Override
     public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            Item item=itemDAO.load(id);
+            item.setTarifaxDia(tarifa);
+            itemDAO.save(item);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al modificar item"+id, e);
+        }
     }
 
     @Override
     public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-                                                                       // Tools | Templates.
+        try {
+            itemDAO.save(i);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al guardar item"+i, e);
+        }
     }
 
     @Override
     public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-                                                                       // Tools | Templates.
+        try {
+            Cliente cliente=clienteDao.consultarCliente(docu);
+            cliente.setVetado(estado);
+            clienteDao.save(cliente);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al vetar cliente"+docu, e);
+        }
     }
 }
