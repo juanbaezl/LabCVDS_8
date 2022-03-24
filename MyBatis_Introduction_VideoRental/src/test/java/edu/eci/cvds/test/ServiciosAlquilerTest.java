@@ -1,7 +1,5 @@
 package edu.eci.cvds.test;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +32,18 @@ public class ServiciosAlquilerTest {
 
     @Test
     public void emptyDB() {
-        for(int i = 0; i < 100; i += 10) {
+        for (int i = 0; i < 100; i += 10) {
             boolean r = false;
             try {
                 Cliente cliente = serviciosAlquiler.consultarCliente(8);
-            } catch(ExcepcionServiciosAlquiler e) {
+            } catch (ExcepcionServiciosAlquiler e) {
                 r = true;
-            } catch(IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 r = true;
             }
             // Validate no Client was found;
             Assert.assertTrue(r);
-        };
+        }
+        ;
     }
 }
