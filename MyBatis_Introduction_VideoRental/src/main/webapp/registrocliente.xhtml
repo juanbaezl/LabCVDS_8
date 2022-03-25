@@ -7,46 +7,62 @@
 
       <style>
         body{
-            padding: 10%;
-            font-family: Verdana, "impact",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-            background-color: rgb(93, 1, 179);
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgb(46, 46, 184);
             color: white;
-            font-family: sans-serif;
-            align-self: center;
             text-align: center;
-            align-items: center;
-            align-content: center;
+        }
+        .divBody{
+            background-color: rgba(1, 1, 70, 0.623);
+            border-radius: 5px;
+            height: auto;
+            width: auto;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        .titulo{
+            padding: 15px;
+            font-size: 32px;
         }
         .formbox{
             border-radius: 5px ;
             background-color: rgba(1, 1, 70, 0.623);
             padding: 20px 15px;
+            margin-left: 10px;
+            margin-right: 10px;
             text-align: center;
             align-items: center;
             align-content: center;
         }
-        .answers{
-            opacity: none;
-            font-size: 24px;
-        }
         .botn{
-            width: 30%;
+            width: 15%;
             height: 25px;
             margin: 10px;
-            padding: 5px;
-            background: greenyellow;
-            color: black;
-            text-decoration: none;
-            border-color: black ;
-            border: 5px;
             border-radius: 5px;
+            background: rgb(248, 248, 248);
+            color: black;
+            text-align: center;
+            align-self: center;
+        }
+
+        h1{
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .input{
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .gri{
-            background: rgba(131, 112, 241, 0.664);
+            background: rgba(4, 0, 8, 0.664);
             display: grid;
+            border-radius: 5px;
+            text-align: center;
             grid-template-columns: 30% 30%;
-            padding: 10%;
+            padding: 8%;
+
         }
 
         .table{
@@ -54,7 +70,6 @@
             text-align: center;
             align-items: center;
             align-content: center;
-            
         }
 
     </style>
@@ -62,8 +77,8 @@
     <body class= "page">
         
 
-
-        <p>Registro Clientes</p>
+        <div class="divBody">
+        <p class="titulo">Registro Clientes</p>
 
         <h:form id="formRegisterCliente" class="formbox">
             <p:dataTable value="#{Alquiler.clientes}" var="cl" class = "table">
@@ -88,17 +103,19 @@
             </p:dataTable>
             <div class="gri">
                 <h1> Documento</h1>
-                <p:inputText id="Documento" type="long" binding="#{doc}" />
+                <p:inputText class="input" id="Documento" type="long" binding="#{doc}" />
                 <h1>Nombre</h1>
-                <p:inputText id="Nombre" type="String" binding="#{name}"/>
+                <p:inputText class="input" id="Nombre" type="String" binding="#{name}"/>
                 <h1>Telefono</h1>
-                <p:inputText id="Telefono" type="String" binding="#{tele}"/>
+                <p:inputText class="input" id="Telefono" type="String" binding="#{tele}"/>
                 <h1>Direccion</h1>
-                <p:inputText id="Direccion" type="String" binding="#{dir}"/>
+                <p:inputText class="input" id="Direccion" type="String" binding="#{dir}"/>
                 <h1>Email</h1>
-                <p:inputText id="Email" type="String" binding="#{mail}"/>
+                <p:inputText class="input" id="Email" type="String" binding="#{mail}"/>
             </div>
             <p:commandButton update="formRegisterCliente" class="botn" value="Registrar" actionListener="#{Alquiler.insertarCliente(name.value, doc.value, tele.value, dir.value, mail.value)}"/>
+            <br><p:commandButton update="formRegisterCliente" class="botn" value="Back" action="#{navigationController.paginaInicio()}"/></br>
         </h:form>
+        </div>
     </body>
 </html>

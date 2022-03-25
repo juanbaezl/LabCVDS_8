@@ -5,32 +5,44 @@
       xmlns:p="http://primefaces.org/ui">
       <style>
         body{
-            padding: 10%;
-            font-family: Verdana, "impact",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-            background-color: rgb(93, 1, 179);
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgb(46, 46, 184);
             color: white;
-            font-family: sans-serif;
-            align-self: center;
             text-align: center;
-            align-items: center;
-            align-content: center;
+        }
+
+        .div{
+            background-color: rgba(1, 1, 70, 0.623);
+            border-radius: 5px;
+            height: auto;
+            width: auto;
+            padding-block: 18%;
+            margin-left: 30px;
+            margin-right: 30px;
         }
 
         .botn{
-            width: 30%;
+            width: 15%;
             height: 25px;
             margin: 10px;
-            padding: 5px;
-            background: greenyellow;
+            border-radius: 5px;
+            background: rgb(248, 248, 248);
             color: black;
-            text-decoration: none;
+            text-align: center;
+            align-self: center;
+        }
+
+        .texto{
+            font-size: 32px;
         }
         </style>
         <title>VideoTienda</title>
     <h:body>
-        <p:outputLabel value="Bienvenido a la VideoTienda"/>
-        <h:form id="form1">
-            <p:commandButton class="botn" value="Registrar Cliente" actionListener="#{Alquiler.inicio()}" action="#{navigationController.paginaCliente()}"/>
-        </h:form>
+        <div class="div">
+            <p:outputLabel class="texto" value="Bienvenido"/>
+            <h:form id="form1">
+                <p:commandButton class="botn" value="Registrar Cliente" actionListener="#{Alquiler.inicio()}" action="#{navigationController.paginaCliente()}"/>
+            </h:form>
+        </div>
     </h:body>
 </html>
