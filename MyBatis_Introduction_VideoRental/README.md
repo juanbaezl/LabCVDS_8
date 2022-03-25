@@ -172,3 +172,5 @@ En este laboratorio se utilizará un 'framework' de persistencia. La base de dat
 	```
 	
 	Verifique el funcionamiento haciendo una consulta a través del 'mapper' desde MyBatisExample.
+
+	select * from VI_CLIENTES where telefono = 

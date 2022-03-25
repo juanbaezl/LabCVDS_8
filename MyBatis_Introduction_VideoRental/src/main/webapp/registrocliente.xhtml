@@ -64,11 +64,6 @@
 
 
         <p>Registro Clientes</p>
-        <h:form id="consulta">
-            <h1>Busque por numero de documento</h1>
-            <input   id="Documento" type="long" binding="#{doc}"/>
-            <p:commandButton update="consulta" class="botn" value="Consultar" actionListener="#{Alquiler.consulta(doc.value)}"/>
-        </h:form>
 
         <h:form id="formRegisterCliente" class="formbox">
             <p:dataTable value="#{Alquiler.clientes}" var="cl" class = "table">
