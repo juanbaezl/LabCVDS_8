@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper">
+  <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper">
+
     <resultMap type='Cliente' id='ClienteResult'>
       <id property='documento' column='documento'/>
       <result property='nombre' column='nombre'/>
@@ -11,7 +12,7 @@
       <result property='direccion' column='direccion'/>
       <result property='email' column='email'/>
       <result property='vetado' column='vetado'/>
-      <collection property='rentados' ofType='ItemRentado' columnPrefix="ir"></collection>
+      <collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult' columnPrefix="ir"></collection>
     </resultMap>
 
     <select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
@@ -51,5 +52,10 @@
         #{fechaInicio},
         #{fechaFin}
       )
-    </insert>      	
-</mapper>
+    </insert>
+    <insert id="insertarCliente" parameterType="map">
+      insert into VI_CLIENTES (documento, nombre, telefono, direccion, email, vetado) values
+      (#{cl.documento}, #{cl.nombre}, #{cl.telefono}, #{cl.direccion}, #{cl.email}, #{cl.vetado})
+  </insert>
+
+  </mapper>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+      <style>
+        .page{
+            padding: 10%;
+            font-family: Verdana, "impact",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+            background-color: rgb(93, 1, 179);
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+        }
+        .formbox{
+            border-radius: 5px ;
+            background-color: rgba(1, 1, 70, 0.623);
+            padding: 20px 15px;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+        }
+        .answers{
+            opacity: none;
+            font-size: 24px;
+        }
+        .botn{
+            width: 10%;
+            height: auto;
+            margin: 10px;
+            padding: auto;
+
+        }
+
+        .table{
+            align-self: center;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+            
+        }
+
+    </style>
+
+
+    <h:head>
+        <title>Zona de Alquiler</title>
+    </h:head>
+    <h:body class="page">
+        <p:outputLabel value="Registro Alquiler"/>
+        <h:form id="rentForm" class = "formbox">
+            <p:outputLabel value="#{Alquiler.seleccionado.nombre}"/><br></br>
+            <p>Items Rentados</p><br></br>
+            <p:dataTable value="#{Alquiler.rentados}" var="itmRentado" class="table">
+                <h:column headerText="Id Item Rentado">
+                    <p:outputLabel value="#{itmRentado.item.id}"/>
+            </h:column>
+                <h:column headerText="Nombre del Item">
+                    <p:outputLabel value="#{itmRentado.item.nombre}"/>
+        </h:column>
+            </p:dataTable>
+            <br></br><p:outputLabel value="Se tiene una Multa de: "/> <p:outputLabel value="#{Alquiler.multa}"/>
+            <br></br>
+            <h:panelGrid columns="6">
+                <h1> Codigo</h1>
+                <p:inputText  class= "answers" id="Codigo" type="long" binding="#{cod}" />
+                <h1> Cantidad de dias</h1>
+                <p:inputText class= "answers" id="Dias" type="int" binding="#{dias}"/>
+                <p:commandButton update="rentForm"  class ="botn" value="Price" actionListener="#{Alquiler.consultarCostoAlquiler(cod.value, dias.value)}"/>
+                <p:commandButton update="rentForm"  class ="botn" value="Rent" actionListener="#{Alquiler.rentarItem()}" action="#{navigationController.paginaCliente()}"/>
+                <p:outputLabel value="#{Alquiler.costo}"/>
+            </h:panelGrid>
+            <p:dataTable value="#{Alquiler.disponibles}" var="available"  class="table">
+                <h:column headerText="Id">
+                    <p:outputLabel value="#{available.id}"/>
+                </h:column>
+                <h:column headerText="Nombre">
+                    <p:outputLabel value="#{available.nombre}"/>
+                </h:column>
+            </p:dataTable>
+            
+            <br><p:commandButton update="rentForm" class ="botn" value="Back" action="#{navigationController.paginaCliente()}"/></br>
+
+            
+        </h:form>
+    </h:body>
+</html>

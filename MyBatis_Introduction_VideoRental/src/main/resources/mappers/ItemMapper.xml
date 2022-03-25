@@ -2,8 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
+
   <resultMap type='Item' id='ItemResult'>
     <id property='id' column='id'/>
     <result property='nombre' column='nombre'/>
@@ -14,7 +15,7 @@
     <result property='genero' column='genero'/>
     <association property="tipo" javaType="TipoItem"/>
   </resultMap>
-  
+
   <insert parameterType="map" id="insertarItem">
     insert into VI_ITEMS values(
         #{item.id}, 
@@ -34,5 +35,25 @@
 
   <select parameterType="map" id="consultarItems" resultMap="ItemResult">
     select * from VI_ITEMS
-  </select>  
+  </select>
+
+  <select parameterType="map" id="consultarDisponibles" resultMap="ItemResult">
+
+    SELECT
+        r.id,
+        r.nombre,
+        r.descripcion,
+        r.fechalanzamiento,
+        r.tarifaxdia,
+        r.formatorenta,
+        r.genero,
+        ti.id as ti_id,
+        ti.descripcion as ti_descripcion
+
+       FROM VI_ITEMS AS r
+       LEFT JOIN VI_TIPOITEM AS ti ON r.TIPOITEM_id=ti.id
+      LEFT JOIN VI_ITEMRENTADO AS b ON r.id=b.ITEMS_id
+      WHERE b.ITEMS_id IS null
+</select>
+
 </mapper>

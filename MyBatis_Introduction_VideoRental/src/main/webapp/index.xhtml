@@ -1,0 +1,58 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+     <servlet-name>Faces Servlet</servlet-name>
+     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+     <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>Faces Servlet</servlet-name>
+     <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+     <welcome-file>faces/index.xhtml</welcome-file>
+  </welcome-file-list>
+  <listener>
+    <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
+  </listener>
+</web-app>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd%22%3E
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui%22%3E
+      <style>
+        body{
+            padding: 10%;
+            font-family: Verdana, "impact",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+            background-color: rgb(93, 1, 179);
+            color: white;
+            font-family: sans-serif;
+            align-self: center;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .botn{
+            width: 30%;
+            height: 25px;
+            margin: 10px;
+            padding: 5px;
+            background: greenyellow;
+            color: black;
+            text-decoration: none;
+        }
+        </style>
+        <title>VideoTienda</title>
+    <h:body>
+        <p:outputLabel value="Bienvenido a la VideoTienda"/>
+        <h:form id="form1">
+            <p:commandButton class="botn" value="Registrar Cliente" actionListener="#{Alquiler.inicio()}" action="#{navigationController.paginaCliente()}"/>
+        </h:form>
+    </h:body>
+</html>
