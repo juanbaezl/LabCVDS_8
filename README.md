@@ -775,6 +775,7 @@ Nota. Para ver cómo navegar entre vistas con JSF revise este enlace.
 3. Verifique que la aplicación se despliegue correctamente en Heroku y sea completamente funcional, tal como se encontraba en local.
 
 4. Agregue en el Readme los enlaces necesarios a Heroku, Codacy, etc. para que se pueda verificar el correcto funcionamiento de toda la aplicación.
+[![CircleCI](https://circleci.com/gh/juanbaezl/LabCVDS_8/tree/main.svg?style=svg)](https://circleci.com/gh/juanbaezl/LabCVDS_8/tree/main)
 
 ### ENTREGA:
 1. En los ‘logs’ de GitHub debe quedar evidencia de los ‘commit’ realizados por cada autor, y en computadores diferentes (esto es verificable). Para esto, no olvide configurar su usuario antes de hacer los commits:
