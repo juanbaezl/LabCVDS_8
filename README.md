@@ -776,6 +776,9 @@ Nota. Para ver cómo navegar entre vistas con JSF revise este enlace.
 
 4. Agregue en el Readme los enlaces necesarios a Heroku, Codacy, etc. para que se pueda verificar el correcto funcionamiento de toda la aplicación.
 [![CircleCI](https://circleci.com/gh/juanbaezl/LabCVDS_8/tree/main.svg?style=svg)](https://circleci.com/gh/juanbaezl/LabCVDS_8/tree/main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2f4892c8250e4037a117024fa6095bf0)](https://www.codacy.com/gh/juanbaezl/LabCVDS_8/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juanbaezl/LabCVDS_8&amp;utm_campaign=Badge_Grade)  
+URL pagina:  
+https://cvdslab8palabaez.herokuapp.com/
 
 ### ENTREGA:
 1. En los ‘logs’ de GitHub debe quedar evidencia de los ‘commit’ realizados por cada autor, y en computadores diferentes (esto es verificable). Para esto, no olvide configurar su usuario antes de hacer los commits:
