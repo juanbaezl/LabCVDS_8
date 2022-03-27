@@ -1,4 +1,7 @@
 # LABORATORIO 8 - MYBATIS + GUICE + PRIMEFACES
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dbea8ef85d774d69b0074d4f5eb267c1)](https://app.codacy.com/gh/juanbaezl/LabCVDS_8?utm_source=github.com&utm_medium=referral&utm_content=juanbaezl/LabCVDS_8&utm_campaign=Badge_Grade_Settings)
+
 ## *ESCUELA COLOMBIANA DE INGENIERÍA*
 ## *INTRODUCCIÓN A PROYECTOS WEB*
 
