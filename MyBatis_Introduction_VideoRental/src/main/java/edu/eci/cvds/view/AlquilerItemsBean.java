@@ -35,6 +35,8 @@ public class AlquilerItemsBean extends BasePageBean{
     private Cliente seleccionado;
     private List<ItemRentado> rentados;
     private int[] item = new int[2];
+    private int itemCod=0;
+    private int itemDate=0;
     private long multa;
     private long costo;
 
@@ -80,11 +82,14 @@ public class AlquilerItemsBean extends BasePageBean{
                 Logger.getLogger(AlquilerItemsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         multa=total;
-
     }
     public void consultarCostoAlquiler(int itid, int numDias){
         try {
-            costo=serviciosAlquiler.consultarCostoAlquiler(itid,numDias);
+            System.out.println(itemCod);
+            Item rentado=serviciosAlquiler.consultarItem(itemCod);
+            System.out.println(rentado.getId()+" "+rentado.getTarifaxDia());
+            costo = rentado.getTarifaxDia()*itemDate;
+            System.out.println(costo);
             item[0]=itid;
             item[1]=numDias;
         } catch (ExcepcionServiciosAlquiler ex) {
@@ -92,11 +97,13 @@ public class AlquilerItemsBean extends BasePageBean{
         }
     }
     public void rentarItem(){
+        
         try {
-            Item rentado=serviciosAlquiler.consultarItem(item[0]);
-            serviciosAlquiler.registrarAlquilerCliente(new Date(System.currentTimeMillis()), seleccionado.getDocumento(), rentado, item[1]);
-            costo=0;
-            item= new int[2];
+            Item rentado=serviciosAlquiler.consultarItem(itemCod);
+            System.out.println("Silas");
+            serviciosAlquiler.registrarAlquilerCliente(new java.sql.Date(System.currentTimeMillis()), seleccionado.getDocumento(), rentado, itemDate);
+            costo=serviciosAlquiler.consultarCostoAlquiler(itemCod,itemDate);
+            System.out.println("Silas 2.0");
         } catch (ExcepcionServiciosAlquiler ex) {
             Logger.getLogger(AlquilerItemsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -156,6 +163,23 @@ public class AlquilerItemsBean extends BasePageBean{
     public void setCosto(long costo) {
         this.costo = costo;
     }
+
+    public int getItemCod() {
+        return itemCod;
+    }
+
+    public void setItemCod(int itemCod) {
+        this.itemCod = itemCod;
+    }
+
+    public int getItemDate() {
+        return itemDate;
+    }
+
+    public void setItemDate(int itemDate) {
+        this.itemDate = itemDate;
+    }
+
 
 
 }

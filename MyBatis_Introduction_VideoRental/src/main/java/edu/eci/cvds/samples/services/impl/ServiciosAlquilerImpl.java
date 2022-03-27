@@ -17,6 +17,7 @@ import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.List;
 
 @Singleton
@@ -116,7 +117,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Override
    public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
        try{
-           clienteDAO.agregarItemRentadoACliente(docu,item.getId(),date,Date.valueOf(date.toLocalDate().plusDays(numdias)));
+           clienteDAO.agregarItemRentadoACliente(docu,item.getId(),date,sumarDias(date, numdias));
        }catch(PersistenceException ex){
             throw new ExcepcionServiciosAlquiler("Error al registrar item al cliente"+docu,ex);
 
@@ -171,5 +172,12 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Override
    public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   }
+
+   private static java.util.Date sumarDias(Date date, int numDias){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DAY_OF_YEAR, numDias);
+        return c.getTime();
    }
 }

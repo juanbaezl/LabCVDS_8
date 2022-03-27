@@ -92,14 +92,14 @@
             <br></br>
             <div class="separacion">
                 <h1> Codigo</h1>
-                <p:inputText  class= "answers" id="Codigo" type="long" binding="#{cod}" />
+                <p:inputText  class= "answers" id="Codigo" type="int" value="#{Alquiler.itemCod}" />
             </div>
             <div class="separacion">
                 <h1> Cantidad de dias</h1>
-                <p:inputText class= "answers" id="Dias" type="int" binding="#{dias}"/>
+                <p:inputText class= "answers" id="Dias" type="int" value="#{Alquiler.itemDate}"/>
             </div>
             <div class="separacion">
-                <p:commandButton update="rentForm"  class="botn" value="Price" actionListener="#{Alquiler.consultarCostoAlquiler(cod.value, dias.value)}"/>
+                <p:commandButton update="rentForm"  class="botn" value="Price" actionListener="#{Alquiler.consultarCostoAlquiler(Codigo.value, Dias.value)}"/>
                 <p:commandButton update="rentForm"  class="botn" value="Rent" actionListener="#{Alquiler.rentarItem()}" action="#{navigationController.paginaCliente()}"/>
             </div>
             <div class="separacion">

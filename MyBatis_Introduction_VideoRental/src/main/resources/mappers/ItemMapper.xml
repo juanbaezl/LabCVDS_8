@@ -30,7 +30,7 @@
   </insert>
 
   <select parameterType="map" id="consultarItem" resultMap="ItemResult">
-    select nombre, descripcion, fechalanzamiento from VI_ITEMS where id=#{id}
+    select id,nombre, descripcion, fechalanzamiento,tarifaxdia from VI_ITEMS where id=#{id}
   </select>
 
   <select parameterType="map" id="consultarItems" resultMap="ItemResult">
